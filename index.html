@@ -124,8 +124,8 @@
 									<div class="row">
 										<div class="col-sm-12 ">
 											<div class="col-sm-4 ">
-												<div class="choice webinar" data-toggle="wizard-radio">
-													<input type="radio" id = "funnel_web" name="funnel" value="webinar">
+												<div class="choice webinar" data-toggle="wizard-radio" onclick="setOptionTrue(1)">
+													<input type="radio" id = "funnel_web" name="funnel" unchecked>
 													<div class="icon">
 														<i class="fa fa-life-ring"></i>
 													</div>
@@ -133,8 +133,8 @@
 												</div>
 											</div>
 											<div class="col-sm-4">
-												<div class="choice launch" data-toggle="wizard-radio">
-													<input type="radio" id = "funnel_plf" name="funnel" value="plf">
+												<div class="choice launch" data-toggle="wizard-radio" onclick="setOptionTrue(2)">
+													<input type="radio" id = "funnel_plf" name="funnel" unchecked>
 													<div class="icon">
 														<i class="fa fa-male"></i>
 													</div>
@@ -143,8 +143,8 @@
 
 											</div>
 											<div class="col-sm-4 ">
-												<div class="choice mail" data-toggle="wizard-radio">
-													<input type="radio" id = "funnel_mails" name="funnel" value="email">
+												<div class="choice mail" data-toggle="wizard-radio" onclick="setOptionTrue(3)">
+													<input type="radio" id = "funnel_mails" name="funnel" uncheckeds>
 													<div class="icon">
 														<i class="fa fa-life-ring"></i>
 													</div>
@@ -182,7 +182,7 @@
 								<div class="tab-pane" id="influencer">
 									<h4 class="info-text">Select the influencer.</h4>
 									<div class="row">
-
+										<div class="row">
 										<div class="col-sm-4 ">
 											<div class="choice influencer web ev" hidden data-toggle="wizard-radio">
 												<input type="radio" name="influencer" value="russell">
@@ -192,16 +192,6 @@
 												<h6>Russell Brunson</h6>
 											</div>
 										</div>
-										<div class="col-sm-4">
-											<div class="choice influencer web oc" hidden data-toggle="wizard-radio">
-												<input type="radio" name="influencer" value=" bryan">
-												<div class="icon">
-													<img class="imginf" src="assets/img/bryan-harris.png" alt="">
-												</div>
-												<h6>Bryan Harris</h6>
-											</div>
-
-										</div>
 										<div class="col-sm-4 ">
 											<div class="choice influencer web ev" hidden data-toggle="wizard-radio">
 												<input type="radio" name="influencer" value="liz">
@@ -209,6 +199,17 @@
 													<img class="imginf" src="assets/img/liz-benny.jpg" alt="">
 												</div>
 												<h6>Liz Benny</h6>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="choice influencer web oc" hidden data-toggle="wizard-radio">
+												<input type="radio" name="influencer" value=" bryan">
+												<div class="icon">
+													<img class="imginf" src="assets/img/bryan-harris.png" alt="">
+												</div>
+												<h6>Bryan Harris</h6>
 											</div>
 										</div>
 										<div class="col-sm-4">
@@ -238,6 +239,8 @@
 												<h6>Teachable</h6>
 											</div>
 										</div>
+									</div>
+									<div class="row">
 										<div class="col-sm-4">
 											<div class="choice influencer plf ev" hidden data-toggle="wizard-radio">
 												<input type="radio" name="influencer" value="jeffev">
@@ -247,6 +250,8 @@
 												<h6>Jeff Walker</h6>
 											</div>
 										</div>
+									</div>
+									<div class="row">
 										<div class="col-sm-4">
 											<div class="choice influencer plf oc" hidden data-toggle="wizard-radio">
 												<input type="radio" name="influencer" value="jeffoc">
@@ -283,6 +288,8 @@
 												<h6>Brian@Samcart</h6>
 											</div>
 										</div>
+									</div>
+									<div class="row">
 										<div class="col-sm-4">
 											<div class="choice influencer email oc" hidden data-toggle="wizard-radio">
 												<input type="radio" name="influencer" value="sammail">
@@ -292,6 +299,7 @@
 												<h6>Brian@Samcart</h6>
 											</div>
 										</div>
+									</div>
 										<div class="col-sm-4">
 											<div class="choice influencer email ev" hidden data-toggle="wizard-radio">
 												<input type="radio" name="influencer" value="andre">
@@ -381,6 +389,33 @@
 <!--  methods for manipulating the wizard and the validation -->
 <script src="assets/js/wizard.js"></script>
 <script>
+
+var funnel_web_selected = false;
+var funnel_plf_selected = false;
+var funnel_mails_selected = false;
+
+function setOptionTrue(choice)
+{
+	if(choice == 1)
+	{
+		funnel_web_selected = true;
+		funnel_mails_selected = false;
+		funnel_plf_selected = false;
+	}
+	if(choice == 2)
+	{
+		funnel_web_selected = false;
+		funnel_mails_selected = false;
+		funnel_plf_selected = true;
+	}
+	if(choice == 3)
+	{
+		funnel_web_selected = false;
+		funnel_mails_selected = true;
+		funnel_plf_selected = false;
+	}
+}
+
 	$(document).ready(function() {
 
 
@@ -389,15 +424,20 @@
 
 		$('.open').click(function() {
 			var elements = document.getElementsByClassName('oc');
+
 			for (var i = 0; i <elements.length; i++ ) {
-				if($('#funnel_mails').val()) {
+				if(funnel_mails_selected) {
 					if(elements[i].className.split("email").length != 1)
 						elements[i].hidden = false;
 			    }
-				if($('#funnel_web').val()) {
+				if(funnel_web_selected) {
 							if(elements[i].className.split("web").length != 1)
 								elements[i].hidden = false;
 					    }
+				if(funnel_plf_selected) {
+							if(elements[i].className.split("plf").length != 1)
+									elements[i].hidden = false;
+								}
 		}
 
 });
@@ -405,16 +445,18 @@
 		$('.ev').click(function() {
 			var elements = document.getElementsByClassName('ev');
 			for (var i = 0; i <elements.length; i++ ) {
-				if($('#funnel_web').val())
-					if(elements[i].className.split("web").length != 1)
-						elements[i].hidden = false
-				if($('#funnel_plf').val()) {
-					if(elements[i].className.split("plf").length != 1)
-						elements[i].hidden = false;
-					}
-				if($('#funnel_mails').val())
+				if(funnel_mails_selected) {
 					if(elements[i].className.split("email").length != 1)
-						elements[i].hidden = false
+						elements[i].hidden = false;
+			    }
+				if(funnel_web_selected) {
+							if(elements[i].className.split("web").length != 1)
+								elements[i].hidden = false;
+					    }
+				if(funnel_plf_selected) {
+							if(elements[i].className.split("plf").length != 1)
+									elements[i].hidden = false;
+								}
 			}
 		});
 
