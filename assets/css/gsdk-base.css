@@ -802,8 +802,8 @@ label{
 .wizard-card .nav-pills > li a {
     border: 0 !important;
     text-transform: uppercase;
-    background-color: #999999;
-    color: #FFFFFF !important;
+    background-color: #f2f2f2;
+    color: #333 !important;
     font-size: 12px;
 }
 .wizard-card.ct-wizard-green .nav-pills > li.active a{
@@ -823,7 +823,7 @@ label{
 }
 
 .wizard-card .nav-pills > li > a:hover, .wizard-card .nav-pills > li > a:focus{
-    background-color: #999999;
+    background-color: #f2f2f2;
     cursor: default;
 }
 .wizard-card .btn{
@@ -850,14 +850,18 @@ label{
    text-align: center;
    vertical-align: middle;
    height: 116px;
-   width: 116px;
-   border-radius: 50%;
-   background-color: #999999;
-   color: #FFFFFF;
+   width: 180px;
+   background-color: #FFFFFF;
+   color: #333;
    margin: 0 auto 20px;
    border: 4px solid #CCCCCC;
    transition: all 0.2s;
    -webkit-transition: all 0.2s;
+}
+
+.imginf {
+  height: 110px;
+  width:  170px;
 }
 .wizard-card .choice i{
     font-size: 30px;
