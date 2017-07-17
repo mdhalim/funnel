@@ -1,0 +1,17 @@
+branch-defaults:
+  master:
+    environment: funnel
+    group_suffix: null
+global:
+  application_name: funnel
+  branch: null
+  default_ec2_keyname: QJTAW
+  default_platform: PHP 7.0
+  default_region: us-west-2
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  repository: null
+  sc: git
+  workspace_type: Application
